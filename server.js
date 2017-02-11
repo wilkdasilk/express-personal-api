@@ -49,14 +49,14 @@ app.get('/', function homepage(req, res) {
 
 app.get('/api/profile', function profile(req,res){
   res.json(profileData);
-  exit.process();
+  process.exit();
 });
 
 app.get('/api/shows', function showAll(req,res){
   db.Show.find(function(err,shows){
     if (err) {return console.log("Error: ",err);}
     res.json(shows);
-    exit.process();
+    process.exit();
   });
 });
 
@@ -78,7 +78,7 @@ app.get('/api', function apiIndex(req, res) {
       {method: "DELETE", path: "/api/shows/:id", description: "Remove a show from my list"}
     ]
   });
-  exit.process();
+  process.exit();
 });
 
 /**********
