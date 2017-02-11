@@ -19,7 +19,16 @@ app.use(function(req, res, next) {
  * DATABASE *
  ************/
 
-// var db = require('./models');
+ var profileData = {
+   name: "Auston Wilkinson",
+   gihubLink: "http://github.com/wilkdasilk",
+   githubProfileImage: "https://avatars2.githubusercontent.com/u/23746921?v=3&amp;s=460",
+   personalSiteLink: "wilkdasilk.github.io",
+   currentCity: "San Francisco",
+   friends: [{name: "Jayce", source: "college", type: "goober"}, {name: "Michelle", source: "High School", type: "adventurer"}]
+ }
+
+var db = require('./models');
 
 /**********
  * ROUTES *
@@ -38,22 +47,26 @@ app.get('/', function homepage(req, res) {
 });
 
 
-/*
- * JSON API Endpoints
- */
+app.get('/api/profile', function profile(req,res){
+  res.json(profileData)
+});
 
 app.get('/api', function apiIndex(req, res) {
   // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
   // It would be seriously overkill to save any of this to your database.
   res.json({
-    woopsIForgotToDocumentAllMyEndpoints: true, // CHANGE ME ;)
+    woopsIForgotToDocumentAllMyEndpoints: false,
     message: "Welcome to my personal api! Here's what you need to know!",
-    documentationUrl: "https://github.com/example-username/express_self_api/README.md", // CHANGE ME
-    baseUrl: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
+    documentationUrl: "https://github.com/wilkdasilk/express-personal-api/README.md",
+    baseUrl: "https://aqueous-peak-19600.herokuapp.com/",
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+      {method: "GET", path: "/api/profile", description: "Facts on my human experience"},
+      {method: "GET", path: "/api/shows", description: "Index of all the shows I should watch"},
+      {method: "GET", path: "/api/shows/:id", description: "Find a specific show I should watch"},
+      {method: "POST", path: "/api/shows", description: "Recommend a show I should watch"},
+      {method: "PUT", path: "/api/shows/:id", description: "Edit info about a specific show I should watch"},
+      {method: "DELETE", path: "/api/shows/:id", description: "Remove a show from my list"}
     ]
   })
 });
