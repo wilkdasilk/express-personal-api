@@ -2,6 +2,7 @@
   Schema = mongoose.Schema;
 
  var ShowSchema = new Schema({
+   title: String,
    cast: String,
    creators: String,
    description: String,

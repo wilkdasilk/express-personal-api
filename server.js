@@ -25,7 +25,7 @@ app.use(function(req, res, next) {
    githubProfileImage: "https://avatars2.githubusercontent.com/u/23746921?v=3&amp;s=460",
    personalSiteLink: "wilkdasilk.github.io",
    currentCity: "San Francisco",
-   friends: [{name: "Jayce", source: "college", type: "goober"}, {name: "Michelle", source: "High School", type: "adventurer"}]
+   friends: [{name: "Jayce", source: "college", type: "goober"}, {name: "Michelle", source: "high school", type: "adventurer"}]
  }
 
 var db = require('./models');
@@ -48,7 +48,16 @@ app.get('/', function homepage(req, res) {
 
 
 app.get('/api/profile', function profile(req,res){
-  res.json(profileData)
+  res.json(profileData);
+  exit.process();
+});
+
+app.get('/api/shows', function showAll(req,res){
+  db.Show.find(function(err,shows){
+    if (err) {return console.log("Error: ",err);}
+    res.json(shows);
+    exit.process();
+  });
 });
 
 app.get('/api', function apiIndex(req, res) {
@@ -68,7 +77,8 @@ app.get('/api', function apiIndex(req, res) {
       {method: "PUT", path: "/api/shows/:id", description: "Edit info about a specific show I should watch"},
       {method: "DELETE", path: "/api/shows/:id", description: "Remove a show from my list"}
     ]
-  })
+  });
+  exit.process();
 });
 
 /**********
