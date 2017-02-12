@@ -63,10 +63,18 @@ app.get('/api/shows', function showAll(req,res){
 app.get('/api/shows/:id', function showById(req, res){
   db.Show.findById(req.params.id, function(err,show){
     if (err){return console.log("error: ", err);}
-    else if (!show){console.log("I'm not planning to watch that show");}
+    else if (!show){return console.log("I'm not planning to watch that show");}
     else {
       res.json(show);
     }
+    process.exit();
+  });
+});
+
+app.post('/api/shows', function recommendShow(req, res){
+  db.Show.create(req.body, function(err, newShow){
+    if(err){return console.log("error: ",err);}
+    res.json(newShow);
     process.exit();
   });
 });
