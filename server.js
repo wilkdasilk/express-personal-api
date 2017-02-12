@@ -60,6 +60,17 @@ app.get('/api/shows', function showAll(req,res){
   });
 });
 
+app.get('/api/shows/:id', function showById(req, res){
+  db.Show.findById(req.params.id, function(err,show){
+    if (err){return console.log("error: ", err);}
+    else if (!show){console.log("I'm not planning to watch that show");}
+    else {
+      res.json(show);
+    }
+    process.exit();
+  });
+});
+
 app.get('/api', function apiIndex(req, res) {
   // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
   // It would be seriously overkill to save any of this to your database.
