@@ -20,8 +20,32 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
-          <h1>Under Construction</h1>
-          <h4><a href="/api">Read My API Documentation</a></h4>
+          <div class="row">
+            <div class="profile-top col-md-12">
+              <!-- Profile imported via app.js -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h4><a href="/api">Read My API Documentation</a></h4>
+              <form>
+                <select class="method" name="method">
+                  <option value="GET">GET</option>
+                  <option value="DELETE">DELETE</option>
+                </select>
+                <label>Optional ID</label><input class="inputID" type="text"></input>
+                <input type="submit"></input>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="shows col-md-12">
+              <h2>My Shows to Watch</h2>
+              <div class='import-shows'>
+              <!-- Shows imported via app.js -->
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@
    cast: String,
    creators: String,
    description: String,
-   seasons: Number
+   seasons: Number,
  });
 
  var Show = mongoose.model('Show', ShowSchema);

@@ -23,7 +23,7 @@ app.use(function(req, res, next) {
    name: "Auston Wilkinson",
    gihubLink: "http://github.com/wilkdasilk",
    githubProfileImage: "https://avatars2.githubusercontent.com/u/23746921?v=3&amp;s=460",
-   personalSiteLink: "wilkdasilk.github.io",
+   personalSiteLink: "http://wilkdasilk.github.io",
    currentCity: "San Francisco",
    friends: [{name: "Jayce", source: "college", type: "goober"}, {name: "Michelle", source: "high school", type: "adventurer"}]
  }
@@ -49,14 +49,12 @@ app.get('/', function homepage(req, res) {
 
 app.get('/api/profile', function profile(req,res){
   res.json(profileData);
-  process.exit();
 });
 
 app.get('/api/shows', function showAll(req,res){
   db.Show.find(function(err,shows){
     if (err) {return console.log("Error: ",err);}
     res.json(shows);
-    process.exit();
   });
 });
 
@@ -67,7 +65,6 @@ app.get('/api/shows/:id', function showById(req, res){
     else {
       res.json(show);
     }
-    process.exit();
   });
 });
 
@@ -75,7 +72,6 @@ app.post('/api/shows', function recommendShow(req, res){
   db.Show.create(req.body, function(err, newShow){
     if(err){return console.log("error: ",err);}
     res.json(newShow);
-    process.exit();
   });
 });
 
@@ -84,7 +80,6 @@ app.put('/api/shows/:id', function updateShowById(req,res){
     if (err){return console.log("Error: ", err);}
     //how to catch if no shows match the id?
     res.json(confirmation);
-    process.exit();
   });
 });
 
@@ -92,7 +87,6 @@ app.delete('/api/shows/:id', function removeShowById(req,res){
   db.Show.remove({_id: req.params.id}, function(err, confirmation){
     if (err){return console.log("Error: ",err);}
     res.json(confirmation);
-    process.exit();
   });
 });
 
@@ -114,7 +108,6 @@ app.get('/api', function apiIndex(req, res) {
       {method: "DELETE", path: "/api/shows/:id", description: "Remove a show from my list"}
     ]
   });
-  process.exit();
 });
 
 /**********
