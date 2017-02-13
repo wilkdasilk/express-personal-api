@@ -1,5 +1,3 @@
-console.log("Sanity Check: JS is working!");
-
 $(document).ready(function(){
 
   //grab profile data
@@ -10,6 +8,7 @@ $(document).ready(function(){
     error: logError
   });
 
+  //grab show list data
   $.ajax({
     method: "GET",
     url: "/api/shows",
@@ -41,6 +40,7 @@ $(document).ready(function(){
     //empty show data
     $('.import-shows').html("");
     if (showData.length){
+
       //fill show data
       showData.forEach(function(show){
 
@@ -56,6 +56,7 @@ $(document).ready(function(){
         $(".import-shows").append(showHTML);
       });
     } else {
+
       //fill single show data
 
         var showHTML = `
@@ -77,11 +78,12 @@ $(document).ready(function(){
     event.preventDefault();
     $.ajax({
       method: $('.method').val(),
+      //URL either includes ID or doesn't
       url: "/api/shows/" + $('.inputID').val() || "/api/shows/",
       data: $('form').serialize(),
       error: logError,
       success: loadShows
     });
   });
-
+  
 });

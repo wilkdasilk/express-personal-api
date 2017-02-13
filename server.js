@@ -46,11 +46,12 @@ app.get('/', function homepage(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-
+//GET profile
 app.get('/api/profile', function profile(req,res){
   res.json(profileData);
 });
 
+//Get all Shows
 app.get('/api/shows', function showAll(req,res){
   db.Show.find(function(err,shows){
     if (err) {return console.log("Error: ",err);}
@@ -58,6 +59,7 @@ app.get('/api/shows', function showAll(req,res){
   });
 });
 
+//Get one Show by ID
 app.get('/api/shows/:id', function showById(req, res){
   db.Show.findById(req.params.id, function(err,show){
     if (err){return console.log("error: ", err);}
@@ -68,6 +70,7 @@ app.get('/api/shows/:id', function showById(req, res){
   });
 });
 
+//add a show
 app.post('/api/shows', function recommendShow(req, res){
   db.Show.create(req.body, function(err, newShow){
     if(err){return console.log("error: ",err);}
@@ -75,14 +78,18 @@ app.post('/api/shows', function recommendShow(req, res){
   });
 });
 
+//update one show by ID
 app.put('/api/shows/:id', function updateShowById(req,res){
   db.Show.update({_id : req.params.id}, req.body, { new: true }, function(err, confirmation){
     if (err){return console.log("Error: ", err);}
-    //how to catch if no shows match the id?
+    //
+    //BROKEN: need to catch if no shows match the id. How?
+    //
     res.json(confirmation);
   });
 });
 
+//remove one show by id
 app.delete('/api/shows/:id', function removeShowById(req,res){
   db.Show.remove({_id: req.params.id}, function(err, confirmation){
     if (err){return console.log("Error: ",err);}
@@ -90,11 +97,10 @@ app.delete('/api/shows/:id', function removeShowById(req,res){
   });
 });
 
+//get API documentation 
 app.get('/api', function apiIndex(req, res) {
-  // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
-  // It would be seriously overkill to save any of this to your database.
+
   res.json({
-    woopsIForgotToDocumentAllMyEndpoints: false,
     message: "Welcome to my personal api! Here's what you need to know!",
     documentationUrl: "https://github.com/wilkdasilk/express-personal-api/README.md",
     baseUrl: "https://aqueous-peak-19600.herokuapp.com/",
