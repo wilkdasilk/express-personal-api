@@ -80,10 +80,18 @@ app.post('/api/shows', function recommendShow(req, res){
 });
 
 app.put('/api/shows/:id', function updateShowById(req,res){
-  db.Show.update({_id : req.params.id}, req.body, { new : true }, function(err, updatedShow){
+  db.Show.update({_id : req.params.id}, req.body, { new: true }, function(err, confirmation){
     if (err){return console.log("Error: ", err);}
     //how to catch if no shows match the id?
-    res.json(updatedShow);
+    res.json(confirmation);
+    process.exit();
+  });
+});
+
+app.delete('/api/shows/:id', function removeShowById(req,res){
+  db.Show.remove({_id: req.params.id}, function(err, confirmation){
+    if (err){return console.log("Error: ",err);}
+    res.json(confirmation);
     process.exit();
   });
 });
