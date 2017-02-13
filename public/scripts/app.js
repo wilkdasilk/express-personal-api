@@ -78,6 +78,7 @@ $(document).ready(function(){
     $.ajax({
       method: $('.method').val(),
       url: "/api/shows/" + $('.inputID').val() || "/api/shows/",
+      data: $('form').serialize(),
       error: logError,
       success: loadShows
     });

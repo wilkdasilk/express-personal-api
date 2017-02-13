@@ -25,16 +25,29 @@
               <!-- Profile imported via app.js -->
             </div>
           </div>
-          <div class="row">
+          <div class="routes row">
             <div class="col-md-12">
               <h4><a href="/api">Read My API Documentation</a></h4>
               <form>
                 <select class="method" name="method">
                   <option value="GET">GET</option>
+                  <option value="POST">POST</option>
+                  <option value="PUT">PUT</option>
                   <option value="DELETE">DELETE</option>
                 </select>
                 <label>Optional ID</label><input class="inputID" type="text"></input>
                 <input type="submit"></input>
+                <div class="show-fields">
+                  <div class="row">
+                    <div class="col-md-2"><label>Title</label></div><div class='col-md-4'><input type="text" name="title"></input></div>
+                    <div class="col-md-2"><label>Cast</label></div><div class='col-md-4'><input type="text" name="cast"></input></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2"><label>Creators</label></div><div class="col-md-4"><input type="text" name="creators"></input></div>
+                    <div class="col-md-2"><label>Desciption</label></div><div class="col-md-4"><input type="text" name="description"></input></div>
+                    <div class="col-md-2"><label>Seasons</label></div><div class="col-md-4"><input type="text" name="seasons"></input></div>
+                  </div>
+                </div>
               </form>
             </div>
           </div>

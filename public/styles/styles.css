@@ -49,3 +49,14 @@ h5{
   padding:10px;
   background: rgba(0,150,255,.2);
 }
+.show-fields div {
+  text-align: left;
+}
+
+.show-fields {
+  padding: 20px;
+}
+
+.routes {
+  background: rgba(255,255,255,.3);
+}
