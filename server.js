@@ -79,6 +79,15 @@ app.post('/api/shows', function recommendShow(req, res){
   });
 });
 
+app.put('/api/shows/:id', function updateShowById(req,res){
+  db.Show.update({_id : req.params.id}, req.body, { new : true }, function(err, updatedShow){
+    if (err){return console.log("Error: ", err);}
+    //how to catch if no shows match the id?
+    res.json(updatedShow);
+    process.exit();
+  });
+});
+
 app.get('/api', function apiIndex(req, res) {
   // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
   // It would be seriously overkill to save any of this to your database.
